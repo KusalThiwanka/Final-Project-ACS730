@@ -43,11 +43,11 @@ jobs:
           tflint -f compact
         working-directory: ./terraform/alb
 
-      - name: Init and Run TFLint for 'webserver' directory
+      - name: Init and Run TFLint for 'webservers' directory
         run: |
           tflint --init
           tflint -f compact
-        working-directory: ./terraform/webserver
+        working-directory: ./terraform/webservers
 
       - name: Init and Run TFLint for 'network' directory
         run: |

@@ -27,7 +27,7 @@ jobs:
       matrix:
         directory:
           - terraform/alb
-          - terraform/webserver
+          - terraform/webservers
           - terraform/network
           # Add other directories as needed
     env:
