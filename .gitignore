@@ -1,0 +1,33 @@
+# Local .terraform directories
+**/.terraform/*
+**/.terraform.*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Ignore private and public key pair files recursively
+**/*.pub
+**/project_keypair
+
+# Exclude all .tfvars files, which are likely to contain sensitive data
+*.tfvars
+*.tfvars.json
+
+
+
+# Ansible
+
+# IDEs
+.vscode/
+
+# Roles downloaded dependencies
+roles/external/
+
+# files containing vault password
+**/.vault_pass.txt
+
+# Environment-specific configurations
+**/*.vault
+**/env_vars/
+**/secrets.yml
