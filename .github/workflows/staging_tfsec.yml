@@ -37,7 +37,7 @@ jobs:
         run: tflint --version
 
       # Initialize and run TFLint for each Terraform directory
-      - name: Init and Run TFLint for 'able' directory
+      - name: Init and Run TFLint for 'alb' directory
         run: |
           tflint --init
           tflint -f compact
