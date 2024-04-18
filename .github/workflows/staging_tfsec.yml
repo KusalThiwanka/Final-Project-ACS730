@@ -1,0 +1,68 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: tfsec
+
+on:
+  push:
+    branches: ["staging"]
+    paths: 
+    - terraform/**/*
+  pull_request:
+    branches: [ "prod" ]
+    paths: 
+    - terraform/**/*
+
+jobs:
+  tfsec_tflint_staging:
+    name: Run tfsec sarif report
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v3
+      
+      - uses: terraform-linters/setup-tflint@v2
+        name: Setup TFLint
+        with:
+           tflint_version: v0.38.1
+           
+      - name: Show version
+        run: tflint --version
+
+      # Initialize and run TFLint for each Terraform directory
+      - name: Init and Run TFLint for 'alb' directory
+        run: |
+          tflint --init
+          tflint -f compact
+        working-directory: ./terraform/alb
+
+      - name: Init and Run TFLint for 'webservers' directory
+        run: |
+          tflint --init
+          tflint -f compact
+        working-directory: ./terraform/webservers
+
+      - name: Init and Run TFLint for 'network' directory
+        run: |
+          tflint --init
+          tflint -f compact
+        working-directory: ./terraform/network
+
+      # Run tfsec for the entire terraform directory
+      - name: Run tfsec
+        uses: aquasecurity/tfsec-sarif-action@9a83b5c3524f825c020e356335855741fd02745f
+        with:
+          sarif_file: tfsec.sarif
+          working_directory: ./terraform
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: tfsec.sarif
