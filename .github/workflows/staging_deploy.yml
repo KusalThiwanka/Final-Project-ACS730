@@ -121,6 +121,7 @@ jobs:
   terraform-webservers:
     name: "Terraform WebServers Deployment"
     runs-on: ubuntu-latest
+    needs: terraform-network
     environment: staging
     env:
       GITHUB_TOKEN: ${{ secrets.AWS_GITHUB_TOKEN }}
@@ -225,6 +226,7 @@ jobs:
   terraform-alb:
     name: "Terraform ALB Deployment"
     runs-on: ubuntu-latest
+    needs: terraform-webservers
     environment: staging
     env:
       GITHUB_TOKEN: ${{ secrets.AWS_GITHUB_TOKEN }}
