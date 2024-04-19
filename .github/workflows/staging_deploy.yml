@@ -34,6 +34,7 @@ jobs:
       AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_SESSION_TOKEN:  ${{ secrets.AWS_SESSION_TOKEN }}
+      PROJECT_KEYPAIR_PUB: ${{ secrets.PROJECT_KEYPAIR_PUB }}
 
     steps:
       - name: Checkout
@@ -44,6 +45,10 @@ jobs:
         with:
           terraform_version: 1.1.9
           terraform_wrapper: true
+
+      - name: Create SSH Key File
+        run: echo "${{ secrets.PROJECT_KEYPAIR_PUB }}" > project_keypair.pub
+        working-directory: ./terraform/webservers
 
       - name: Terraform fmt
         id: fmt
