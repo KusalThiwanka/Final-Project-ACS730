@@ -1,12 +1,6 @@
 name: "Terraform Deploy"
 # https://gaunacode.com/deploying-terraform-at-scale-with-github-actions
 on:
-  push:
-    branches:
-    - prod
-    paths:
-    - terraform/**/*
-
   pull_request:
     branches:
     - prod
