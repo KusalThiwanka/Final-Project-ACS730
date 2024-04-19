@@ -10,5 +10,3 @@ module "project-network" {
   prefix               = var.prefix
   default_tags         = var.default_tags
 }
-
-# Testing 1
