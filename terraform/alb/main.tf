@@ -2,6 +2,7 @@ provider "aws" {
   region  = "us-east-1"
 }
 
+
 # Define required providers
 terraform {
   required_providers {
