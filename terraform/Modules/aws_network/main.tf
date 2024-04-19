@@ -10,8 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  profile = var.profile
-  region  = var.region
+  region  = "us-east-1"
 }
 
 # Data source for availability zones
