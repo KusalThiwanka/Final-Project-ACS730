@@ -1,15 +1,25 @@
 name: "Terraform - From Staging"
 # https://gaunacode.com/deploying-terraform-at-scale-with-github-actions
+# on:
+#   push:
+#     branches:
+#     - prod
+#     paths:
+#     - terraform/**/*
+
+#   pull_request:
+#     branches:
+#     - prod
+#     paths: 
+#     - terraform/**/*
+
 on:
   push:
-    branches:
-    - prod
-    paths:
+    branches: ["staging"]
+    paths: 
     - terraform/**/*
-
   pull_request:
-    branches:
-    - prod
+    branches: [ "prod" ]
     paths: 
     - terraform/**/*
 
