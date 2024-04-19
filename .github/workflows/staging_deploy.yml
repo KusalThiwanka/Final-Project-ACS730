@@ -352,4 +352,5 @@ jobs:
         aws-region: "us-east-1"
 
     - name: Run Ansible playbook
+      working-directory: ./ansible
       run: ansible-playbook -i aws_ec2.yaml webserver_playbook.yaml -l ansible
