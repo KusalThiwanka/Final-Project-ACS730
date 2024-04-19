@@ -320,7 +320,7 @@ jobs:
 
   ansible:
     name: Execute Ansible Playbook
-    needs: terraform
+    needs: [terraform-network, terraform-webservers]
     environment: staging
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
