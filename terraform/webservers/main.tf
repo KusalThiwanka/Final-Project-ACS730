@@ -35,6 +35,7 @@ resource "aws_key_pair" "keypair" {
   public_key = file("project_keypair.pub")
 }
 
+# Create Public Instance 
 resource "aws_instance" "public_ec2" {
   count                       = length(data.terraform_remote_state.subnet_data.outputs.public_subnet_ids)
   ami                         = data.aws_ami.latest_amazon_linux.id

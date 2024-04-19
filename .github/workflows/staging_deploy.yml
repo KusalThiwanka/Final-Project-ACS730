@@ -25,9 +25,9 @@ jobs:
     strategy:
       matrix:
         directory:
-          - terraform/alb
-          - terraform/webservers
           - terraform/network
+          - terraform/webservers
+          - terraform/alb
           # Add other directories as needed
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
