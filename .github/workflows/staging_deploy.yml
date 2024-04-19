@@ -139,6 +139,10 @@ jobs:
           terraform_version: 1.1.9
           terraform_wrapper: true
 
+      - name: Create SSH Key File
+        run: echo "${{ secrets.PROJECT_KEYPAIR_PUB }}" > project_keypair.pub
+        working-directory: ./terraform/webservers
+
       - name: Terraform fmt
         id: fmt
         run: terraform fmt 
