@@ -320,7 +320,7 @@ jobs:
 
   ansible:
     name: Execute Ansible Playbook
-    needs: terraform
+    needs: [terraform-network, terraform-webservers]
     environment: staging
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -348,8 +348,9 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws_session_token:  ${{ secrets.AWS_SESSION_TOKEN }}
+        aws-session-token:  ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: "us-east-1"
 
     - name: Run Ansible playbook
+      working-directory: ./ansible
       run: ansible-playbook -i aws_ec2.yaml webserver_playbook.yaml -l ansible
