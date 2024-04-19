@@ -1,4 +1,4 @@
-name: "Terraform Deploy"
+name: "Deploy"
 # https://gaunacode.com/deploying-terraform-at-scale-with-github-actions
 on:
   push:
@@ -6,7 +6,7 @@ on:
     - prod
     paths:
     - terraform/**/*
-    
+
   pull_request:
     branches:
     - prod
